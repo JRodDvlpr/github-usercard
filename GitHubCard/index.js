@@ -106,8 +106,9 @@ const cardCreator = (userObject) => {
 
   const cardSelector = document.querySelector('.cards');
   axios.get('https://api.github.com/users/JRodDvlpr')
-  .then(response => {
-    const theCard = cardCreator(response.data);
+  .then(arr => {
+    console.log(arr);
+    const theCard = cardCreator(arr.data);
     cardSelector.appendChild(theCard);
   })
   .catch(err => {
@@ -116,8 +117,8 @@ const cardCreator = (userObject) => {
 
   followersArray.forEach(follower => {
     axios.get(`https://api.github.com/users/${follower}`)
-    .then(response => {
-      const followers = cardCreator(response.data);
+    .then(arr => {
+      const followers = cardCreator(arr.data);
       cardSelector.appendChild(followers);
     })
   });
